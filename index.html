@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b120d">
+<title>Jardim Padrão — Mapa de Ação & Estratégia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b120d;
+  --card:#131d16;
+  --tx:#f0ede8;
+  --mu:#95a398;
+  --ac:#3fa56b;
+  --ac2:#1a2b1f;
+  --gold:#c9a84c;
+  --bd:#233527;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--tx);
+  font:15px/1.55 'Inter',system-ui,sans-serif;
+  padding-bottom:60px;
+}
+main{max-width:820px;margin:0 auto;padding:16px}
+header.top-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 0 8px;
+  border-bottom:1px solid var(--bd);
+  margin-bottom:14px;
+}
+header.top-header svg{width:42px;height:42px;border-radius:50%}
+h1{font-family:'Playfair Display',serif;font-size:1.65rem;margin:0;color:#fff}
+h2{font-family:'Playfair Display',serif;font-size:1.25rem;margin:22px 0 10px;color:var(--ac)}
+h3{font-size:1rem;margin:0;color:var(--tx)}
+p{margin:4px 0;color:var(--mu)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:12px 0;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+.bar{height:8px;background:var(--ac2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--gold));width:0;transition:width .3s}
+nav{display:flex;gap:6px;margin:16px 0;overflow-x:auto;padding-bottom:4px}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  flex:none;
+  white-space:nowrap;
+  padding:9px 14px;
+  border:1px solid var(--bd);
+  background:var(--card);
+  color:var(--mu);
+  border-radius:10px;
+  font:inherit;
+  font-size:.85rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+}
+nav button.on{
+  background:var(--ac);
+  color:#fff;
+  border-color:var(--ac);
+  box-shadow:0 2px 10px rgba(63,165,107,0.3);
+}
+.chain{display:grid;gap:8px;counter-reset:c}
+.chain div{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px;counter-increment:c}
+.chain div:before{content:counter(c);display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;background:var(--ac);color:#fff;border-radius:50%;font-size:.78rem;margin-right:8px;font-weight:700}
+.chain small{display:block;color:var(--mu);margin-left:32px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.grid div{background:var(--ac2);border-radius:10px;padding:12px;font-size:.88rem;border:1px solid var(--bd)}
+label{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--bd);cursor:pointer}
+label:first-of-type{border-top:0}
+input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--ac);flex:none;cursor:pointer}
+label.done span{text-decoration:line-through;color:var(--mu)}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin:12px 0}
+summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+.pct{font-size:.85rem;color:var(--ac);font-weight:700;white-space:nowrap}
+.body{padding:0 16px 16px}
+.kpi{margin-top:8px;font-size:.88rem;background:var(--ac2);padding:10px 12px;border-radius:8px;border:1px solid var(--bd)}
+.tag{font-size:.75rem;background:var(--ac2);color:var(--ac);border-radius:99px;padding:2px 8px;margin-left:6px;font-weight:600}
+.reset{margin:24px 0;background:none;border:1px solid var(--bd);color:var(--mu);padding:8px 14px;border-radius:10px;font:inherit;cursor:pointer}
+.chip{margin:3px 4px 3px 0;padding:6px 12px;border-radius:99px;border:1px solid var(--ac);background:none;color:var(--tx);font:inherit;font-size:.82rem}
+.chip.part{background:var(--ac2)}.chip.full{background:var(--ac);color:#fff}
+.slide{min-height:300px;padding:20px}
+.nb{flex:1;padding:12px;border-radius:10px;border:1px solid var(--ac);background:var(--ac);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.nb.b{background:none;color:var(--ac)}
+.dots{text-align:center;margin:14px}.dots i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--bd);margin:0 4px;transition:all .2s}.dots i.on{background:var(--ac);width:18px;border-radius:4px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.zl span{display:inline-block;margin-right:12px;font-size:.82rem;color:var(--mu)}
+</style>
+</head>
+<body>
+<main>
+<header class="top-header">
+  <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2f7d46"/><path d="M30 78c0-22 14-31 28-34-12 6-20 14-22 30 8-10 18-14 34-18 4-14 2-22-2-30C46 24 30 34 28 56c0 10 0 16 2 22z" fill="#fff"/></svg>
+  <div>
+    <h1>Jardim Padrão</h1>
+    <p style="font-size:13px;margin:0;color:var(--gold)">Mapa de Ação, Processos & Estratégia de Escala</p>
+  </div>
+</header>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <b>Progresso Geral da Operação</b>
+    <span class="pct" id="tot">0%</span>
+  </div>
+  <div class="bar" style="margin-top:10px"><i id="totbar"></i></div>
+</div>
+<nav id="nav"></nav>
+<div id="v"></div>
+<button class="reset" id="rs">Zerar progresso</button>
+</main>
+<script>
+
+var CHAIN=[["Estratégia e mercado","Segmentos, regiões, serviços e metas"],["Geração de demanda","Google, indicações, parcerias, prospecção"],["Atendimento e qualificação","Registro do contato, necessidade, região, prazo"],["Visita técnica e orçamento","Escopo, custo, preço e proposta"],["Fechamento","Aprovação, contrato, pagamento, ordem de serviço"],["Planejamento operacional","Agenda, equipe, rota, materiais"],["Execução e qualidade","Realização, inspeção e conclusão"],["Faturamento e recebimento","Cobrança, nota, conciliação"],["Pós-venda e recorrência","Satisfação, manutenção, indicação, renovação"]];
+var AREAS=["Direção e gestão","Marketing e comercial","Operações","RH","Financeiro","Compras e patrimônio","Segurança e conformidade","Tecnologia e dados"];
+var ASSETS=[["a1","Site da empresa (já temos)",1],["a2","Redes sociais (já temos)",1],["a3","Perfil da Empresa no Google revisado"],["a4","WhatsApp Business com mensagens padrão"],["a5","Planilha/CRM único de leads e clientes"]];
+var ST=[
+{id:"s1",t:"1. Aquisição de clientes",g:"Criar várias fontes de demanda que possam ser medidas.",k:"Leads qualificados por canal e custo por cliente",ps:[
+["Reativar clientes antigos",["Exportar clientes antigos para uma planilha: nome, serviço, data e região","Separar por última contratação: até 3 meses, 3 a 12 meses e mais de 12","Enviar mensagem personalizada oferecendo manutenção programada","Registrar as respostas e agendar novo contato de quem não fechou"]],
+["Indicações",["Definir o momento do pedido: logo após o cliente aprovar o serviço","Escrever a mensagem de pedido (versão residencial e versão empresarial)","Perguntar “como nos conheceu?” em todo contato novo","Registrar a origem e quem indicou","Agradecer quem indicou; se houver recompensa, deixar a regra por escrito"]],
+["Google e buscas locais",["Revisar o Perfil da Empresa: nome, telefone, área atendida e horário","Cadastrar categorias e serviços oferecidos","Subir fotos próprias de trabalhos (com autorização do cliente)","Pedir avaliações a clientes satisfeitos e responder todas","Publicar uma novidade por semana"]],
+["Prospecção de condomínios e empresas",["Montar lista: nome, endereço, segmento, responsável e canal de contato","Pontuar prioridade: proximidade, recorrência, acesso ao decisor e margem provável","Fazer o primeiro contato para descobrir quem contrata a manutenção das áreas verdes","Seguir a cadência nos dias 1, 3, 7 e 14, sempre com motivo e próxima ação","Agendar visita técnica com quem tiver necessidade","Registrar tudo no CRM e parar de contatar quem pedir"]],
+["Parcerias",["Listar parceiros: imobiliárias, paisagistas, administradoras, limpeza e viveiros","Propor uma indicação mútua simples","Definir como indicar e como acompanhar cada indicação","Se houver comissão, registrar a regra por escrito","Avaliar o resultado de cada parceria todo mês"]],
+["Anúncios no Google (teste)",["Criar campanha por serviço e região","Direcionar para o WhatsApp com mensagem pronta","Rodar com orçamento pequeno e medir vendas, não só contatos","Pausar o que gera contato sem venda"]]]},
+{id:"s2",t:"2. Atendimento e vendas",g:"Responder rápido, qualificar e transformar contato em venda.",k:"Taxa de conversão e tempo entre contato e orçamento",ps:[
+["Base comercial (CRM)",["Criar a planilha com as 12 etapas do funil","Colunas: contato, origem, região, serviço, valor, etapa, próxima ação e data","Cadastrar leads e orçamentos pendentes de hoje","Regra fixa: nenhum lead sem responsável e sem próxima ação","Revisar o CRM todos os dias"]],
+["Primeiro atendimento",["Definir o tempo máximo de resposta","Pedir localização, fotos, descrição do serviço e prazo","Classificar: simples, intermediário ou complexo","Encaminhar: orçamento por foto, visita técnica ou reunião"]],
+["Visita técnica",["Confirmar endereço, responsável e acesso","Medir a área e fotografar, com autorização","Avaliar terreno, obstáculos e riscos","Estimar horas, equipe, materiais e descarte","Preencher o formulário da visita e registrar no CRM"]],
+["Orçamento e proposta",["Calcular o custo na ficha de custo (etapa 4)","Aplicar a margem mínima definida","Montar a proposta: escopo, o que não inclui, prazo, valor, pagamento e validade","Enviar dentro do prazo definido","Registrar data de envio e validade no CRM"]],
+["Follow-up e negociação",["Acompanhar em datas fixas, por exemplo 2, 5 e 10 dias","Tratar objeções; não baixar preço sem reduzir escopo","Não empresarial, confirmar quem aprova e em quanto tempo","Registrar ganho, perdido ou adiado com o motivo"]],
+["Fechamento e passagem para a operação",["Confirmar escopo, valor, data e forma de pagamento","Fazer contrato quando for empresarial ou recorrente","Gerar a ordem de serviço","Só mobilizar a equipe com todas as informações completas"]]]},
+{id:"s3",t:"3. Operação e entrega",g:"Executar com padrão e comprovar a conclusão.",k:"Retrabalho, atrasos e margem por hora de equipe",ps:[
+["Ordem de serviço",["Criar o modelo: cliente, endereço, contato, data, escopo, materiais, equipe e riscos","Gerar uma ordem para cada venda","Entregar à equipe antes do dia do serviço"]],
+["Agenda e rotas",["Mapear a capacidade diária de cada equipe","Agrupar serviços por região","Considerar clima, equipamentos e condições de acesso","Confirmar com o cliente na véspera"]],
+["Execução e qualidade",["Checklist de início: ordem, EPIs, equipamentos e condição do local","Tirar foto do antes, com autorização","Executar conforme o padrão do serviço e limpar durante o trabalho","Tirar foto do depois e conferir o escopo","Retirar resíduos e dar o destino correto"]],
+["Encerramento",["Registrar horas, materiais, ocorrências e pendências","Obter a confirmação de conclusão do cliente","Liberar para faturamento","Anotar serviços adicionais identificados"]],
+["Equipamentos e compras",["Fazer o inventário: item, responsável, estado e manutenção","Inspecionar antes do uso e fazer manutenção preventiva","Cotar compras com 2 a 3 fornecedores","Controlar o consumo de materiais por serviço"]]]},
+{id:"s4",t:"4. Financeiro e rentabilidade",g:"Saber o custo real e quais serviços dão lucro.",k:"Margem de contribuição por serviço e caixa projetado",ps:[
+["Custo e preço",["Montar a ficha: mão de obra, deslocamento, equipamentos, materiais, resíduos e impostos","Calcular a margem de contribuição de cada serviço","Definir a margem mínima aceitável","Calcular a margem por hora de equipe"]],
+["Caixa",["Registrar entradas e saídas todos os dias","Conferir contas a pagar e a receber toda semana","Projetar o caixa das próximas semanas","Separar dinheiro da empresa do dinheiro pessoal"]],
+["Cobrança",["Combinar forma e prazo de pagamento na venda","Emitir cobrança e documento fiscal no prazo","Lembrar antes do vencimento e cobrar atrasos","Registrar promessas de pagamento e medir a inadimplência"]],
+["Aceitar ou recusar contratos",["Verificar capacidade, preço, margem, deslocamento e prazo de pagamento","Recusar ou renegociar quando a margem não fechar"]],
+["Análise mensal",["Fechar o mês: faturamento, custos e resultado","Comparar por serviço, cliente, região e canal","Calcular o custo de aquisição por canal","Decidir o que ampliar, reajustar ou recusar"]]]},
+{id:"s5",t:"5. RH e delegação",g:"Aumentar a capacidade sem perder controle.",k:"Rotatividade, absenteísmo e treinamentos concluídos",ps:[
+["Cargos e responsabilidades",["Listar as funções atuais e quem faz o quê","Escrever as responsabilidades de cada cargo","Definir o líder de equipe e quem confere a qualidade"]],
+["Recrutamento",["Confirmar a necessidade real e o custo total da vaga","Divulgar por indicações, grupos locais e plataformas de emprego","Entrevistar com perguntas padrão","Fazer a admissão com a documentação correta, com apoio da contabilidade"]],
+["Integração e treinamento",["Montar o roteiro do primeiro dia e da primeira semana","Treinar usando o checklist de cada serviço","Acompanhar o novato nas primeiras semanas","Registrar os treinamentos feitos"]],
+["Segurança do trabalho",["Listar os riscos de cada serviço","Entregar os EPIs e registrar a entrega","Inspecionar as ferramentas","Registrar incidentes e corrigir a causa"]],
+["Desempenho",["Avaliar qualidade, segurança, pontualidade e cooperação","Dar um feedback curto por mês","Acompanhar absenteísmo e rotatividade"]]]},
+{id:"s6",t:"6. Integração e automação",g:"Conectar as áreas e reduzir trabalho manual.",k:"Dependência do proprietário e tempo gasto em tarefas manuais",ps:[
+["Rotina de gestão",["Diário: leads, propostas, agenda e caixa","Semanal: funil, perdas, equipes e caixa, terminando com responsável e prazo","Mensal: resultado, canais, contratos e prioridades"]],
+["Painel de indicadores",["Escolher poucos indicadores: leads, conversão, margem, caixa e retrabalho","Definir fórmula, fonte e responsável de cada um","Atualizar toda semana"]],
+["Pós-venda e recorrência",["Perguntar a satisfação após cada serviço","Pedir avaliação no Google e indicação","Oferecer manutenção programada quando fizer sentido","Manter um calendário de renovações"]],
+["Automação",["Automatizar só o que já funciona de forma manual","Lembretes de follow-up e cobrança e confirmação de agenda","Manter pessoa em reclamações e negociações complexas"]],
+["Delegação",["Listar as tarefas do proprietário","Passar cada tarefa a um responsável com checklist","Testar se a rotina funciona sem ele"]]]}];
+function sl(s){var a=[];s.ps.forEach(function(p,j){p[1].forEach(function(_,i){a.push(s.id+"_"+j+"_"+i)})});return a}
+var DS={
+s1:[["Responsável comercial","Planilha de clientes com data do último serviço","Toda a base foi contatada e as respostas estão registradas"],["Quem atende o cliente no pós-serviço","Colunas “origem” e “indicado por” no CRM","O pedido é feito em todo serviço aprovado e a origem fica registrada"],["Responsável comercial","Painel do Perfil da Empresa no Google","Perfil completo, com fotos próprias e avaliações respondidas"],["Responsável comercial","CRM: lista, tentativas e próxima ação","Lista montada e contatos da semana feitos, com resultado anotado"],["Proprietário","Planilha de parceiros e indicações recebidas","Pelo menos um parceiro ativo com regra combinada"],["Proprietário ou quem gere o tráfego","Planilha da campanha: gasto, contatos e vendas","Resultado medido em vendas e decisão tomada: pausar ou ampliar"]],
+s2:[["Responsável comercial","Planilha ou CRM único","Todos os leads atuais cadastrados, com dono e próxima ação"],["Quem recebe o contato","CRM e WhatsApp Business","Contato respondido no prazo e classificado"],["Responsável comercial ou líder","Formulário de visita com fotos","Escopo, medidas e riscos registrados"],["Responsável comercial, com revisão do proprietário","Ficha de custo e modelo de proposta","Proposta enviada com valor, escopo, validade e margem conferida"],["Responsável comercial","CRM: data de envio e próxima ação","Toda proposta está ganha, perdida ou com data de retorno"],["Responsável comercial e proprietário","Ordem de serviço e contrato","Venda formalizada e ordem entregue à operação"]],
+s3:[["Responsável administrativo","Modelo de ordem de serviço","Cada venda gera uma ordem completa"],["Líder operacional","Agenda compartilhada por região","Semana planejada e clientes confirmados"],["Líder e equipe de campo","Checklist e fotos do serviço","Serviço entregue no padrão, com fotos"],["Líder da equipe","Ordem de serviço fechada","Serviço confirmado e liberado para cobrança"],["Líder operacional","Inventário e lista de compras","Equipamentos inspecionados e compras cotadas"]],
+s4:[["Proprietário","Planilha de ficha de custo","Cada serviço tem custo, preço e margem calculados"],["Responsável financeiro","Planilha de fluxo de caixa","Caixa atualizado e projeção das próximas semanas feita"],["Responsável financeiro","Controle de contas a receber","Cobranças emitidas no prazo e atrasos acompanhados"],["Proprietário","Checklist de decisão no CRM","Decisão registrada com base em margem e capacidade"],["Proprietário","Resumo mensal de resultados","Fechamento feito no início do mês seguinte e decisões definidas"]],
+s5:[["Proprietário","Documento de funções","Cada pessoa sabe suas responsabilidades"],["Proprietário e líder","Ficha de candidatos","Vaga preenchida com admissão regular"],["Líder operacional","Ficha de treinamento","Nãovato trabalha no padrão da empresa"],["Líder operacional","Registro de EPIs e inspeções","EPIs entregues e ferramentas inspecionadas"],["Proprietário e líder","Ficha de avaliação","Feedback mensal feito e registrado"]],
+s6:[["Proprietário","Agenda de reuniões e ata curta","Reuniões acontecem e terminam com responsável e prazo"],["Proprietário","Planilha de indicadores","Painel atualizado toda semana"],["Responsável comercial","CRM: satisfação e renovação","Todo serviço tem retorno de satisfação e próxima oferta avaliada"],["Proprietário","Lista de automações","Automações rodando, com pessoa nas exceções"],["Proprietário","Lista de tarefas delegadas","A rotina funciona sem o proprietário"]]};
+function how(sid,j){var d=DS[sid][j];return '<div class="how"><b>Como operar</b><br>👤 Quem: '+d[0]+'<br>📝 Registrar em: '+d[1]+'<br>✅ Pronto quando: '+d[2]+'</div>'}
+var SL=[
+["Onde estamos",["Jardim Padrão atua a partir de Jacareííí, no interior de São Paulo","Atendemos grande parte do estado; longe só compensa em serviço grande","Já temos site e redes sociais; a empresa já opera com equipe pequena","Este mapa organiza o que fazer, em que ordem e como medir"]],
+["Objetivo",["Vender mais, executar com qualidade e receber corretamente","Crescer sem o proprietário ser o gargalo de tudo","Regra de ouro: primeiro medir, depois padrãonizar, depois aumentar o volume"]],
+["Três frentes de clientes",["Residencial: serviço rápido, orçamento ágil, recorrência","Empresarial: condomínios, empresas e contratos mensais","Chácaras e projetos: roçada, paisagismo, plantio e reflorestamento","Todas usam a mesma operação e o mesmo financeiro, com margem medida por frente"]],
+["Do mercado ao recebimento",["1 Estratégia → 2 Demanda → 3 Atendimento","4 Visita e orçamento → 5 Fechamento → 6 Planejamento","7 Execução → 8 Faturamento → 9 Pós-venda","O pós-venda alimenta indicação, renovação e nova venda"]],
+["Etapa 1: Aquisição",["Reativar clientes antigos e pedir indicações","Google, prospecção de condomínios e empresas, parcerias, anúncios","Cada canal tem lista, contato, registro e meta","Pergunta de ouro: de onde veio este cliente?"]],
+["Regiões: como decidir onde ir",["Zona 1: Jacareííí e vizinhos, foco total","Zona 2: Vale do Paraíba e Alto Tietê, rotas agrupadas","Zona 3: serra e interior de chácaras, serviços médios e grandes","Zona 4: resto de SP, só serviço grande com sinal e deslocamento cobrado"]],
+["Segmentos de maior valor",["Chácaras e condomínios de chácaras: manutenção recorrente","Reflorestamento e restauração: plantio de nativas, com parceria técnica","Paisagismo: implantação e manutenção","Pousadas, condomínios e empresas: contratos mensais"]],
+["Redes e ferramentas",["Grátis: Google Perfil, Instagram, Facebook e Marketplace, WhatsApp Business, TikTok, YouTube, LinkedIn","Pagas: Google Ads, Meta Ads com raio por local, TikTok Ads, marketplaces de serviços, CRM","Comece grátis, meça e só então invista em anúncio"]],
+["Etapa 2: Atendimento e vendas",["Responder rápido e classificar: simples, médio ou complexo","Visita técnica ou avaliação por fotos","Orçamento com custo e margem calculados, proposta clara","Follow-up em datas fixas e motivo de perda registrado"]],
+["Etapa 3: Operação",["Ordem de serviço completa para cada venda","Agenda por região para evitar deslocamento inútil","Checklist de início e fim, fotos de antes e depois","Equipamentos inspecionados e materiais controlados"]],
+["Etapa 4: Financeiro",["Ficha de custo por serviço e margem mínima","Caixa semanal e cobrança no prazo","Serviço longe: valor mínimo, sinal e deslocamento cobrado","Recusar ou renegociar o que não fecha margem"]],
+["Etapas 5 e 6: Equipe e gestão",["Cargos, recrutamento, treinamento e segurança","Rotina diária, reunião semanal e revisão mensal","Painel com poucos indicadores que levam a decisões","Automatizar só o que já funciona; delegar com checklist"]],
+["Próximos 90 dias",["Dias 1 a 7: diagnóstico e base única de clientes","Dias 8 a 30: CRM, custos, reativação, Google e lista de alvos","Dias 31 a 60: padrãonização da operação e teste de canais","Dias 61 a 90: ampliar o que vende e corrigir o que não dá margem"]]];
+SL.splice(7,0,["Alto padrão e parcerias",["Fazenda da Grama (Itupeva) já é cliente; o objetivo é recorrência e indicação","Condomínios do mesmo nível: Terras da Alvorada, Fazenda Serra Azul, Ibi Aram e outros","Arquitetos, paisagistas, construtoras e corretores decidem ou influenciam a contratação","CoteiBem (SíndicoNet): plataforma onde síndicos cotam fornecedores"]]);
+var CT=[["Jacareííí",-23.305,-45.966,0,10,4,"start"],["São José dos Campos",-23.223,-45.901,1,8,-6,"start"],["Santa Branca",-23.393,-45.886,1,8,12,"start"],["Igaratáá",-23.204,-46.157,1,-8,-4,"end"],["Guararema",-23.413,-46.035,1,-8,14,"end"],["Mogi das Cruzes",-23.522,-46.188,2,-8,14,"end"],["Santa Isabel",-23.317,-46.221,2,-8,-6,"end"],["Nazaré Paulista",-23.178,-46.396,2,0,16,"middle"],["Paraibuna",-23.386,-45.664,2,8,12,"start"],["Caçapava",-23.100,-45.707,2,8,-4,"start"],["Taubatéé",-23.026,-45.556,2,8,4,"start"],["Atibaia",-23.117,-46.556,3,-8,-4,"end"],["Bragança Paulista",-22.953,-46.542,3,8,4,"start"],["Itatiba",-23.003,-46.839,3,-8,-6,"end"],["Jundiaíí",-23.186,-46.884,3,0,16,"middle"],["Campinas",-22.906,-47.061,3,8,4,"start"],["Campos do Jordão",-22.739,-45.591,3,-8,4,"end"],["Itupeva · Faz. da Grama",-23.153,-47.058,5,-12,4,"end"],["Itu",-23.264,-47.299,4,0,16,"middle"],["Sorocaba",-23.502,-47.458,4,8,4,"start"],["São Paulo",-23.550,-46.633,4,0,18,"middle"],["São Sebastião",-23.760,-45.410,4,-8,4,"end"],["Ubatuba",-23.434,-45.083,4,-8,4,"end"]];
+var ZC=["#14532d","#2f7d46","#2c7fb8","#e08a1e","#7c8580","#d4a017"];
+var RT=[["1","Vale do Paraíba","#2c7fb8",["Jacareííí","São José dos Campos","Caçapava","Taubatéé","Campos do Jordão"],"Serviços residenciais, condomínios e empresas do Vale. Um dia fixo por semana, agrupando visitas."],["2","Serra e chácaras","#e08a1e",["Jacareííí","Igaratáá","Nazaré Paulista","Atibaia","Bragança Paulista"],"Chácaras, paisagismo e projetos médios e grandes. Um dia fixo por mês, com visitas agrupadas."],["3","Alto padrão (Itupeva)","#b8860b",["Jacareííí","Mogi das Cruzes","São Paulo","Jundiaíí","Itupeva · Faz. da Grama"],"Fazenda da Grama e condomínios do mesmo nível. Diária completa com vários clientes na mesma viagem."],["4","Litoral Nãorte","#7c8580",["Jacareííí","Paraibuna","São Sebastião"],"Só serviço grande, com sinal e deslocamento cobrados."]];
+function mapSvg(){var P={};CT.forEach(function(c){P[c[0]]=[(c[2]+47.55)*0.918*330+30,(-22.65-c[1])*330+30]});var b=P["Jacareííí"];
+var o='<svg viewBox="0 0 820 440" role="img" aria-label="Mapa esquemático das rotas de atendimento" style="width:100%;height:auto;display:block;font:11px system-ui,sans-serif"><rect width="820" height="440" rx="14" fill="var(--ac2)"/>';
+o+='<circle cx="'+b[0]+'" cy="'+b[1]+'" r="170" fill="var(--ac)" opacity=".07" stroke="var(--ac)" stroke-dasharray="4 4"/><circle cx="'+b[0]+'" cy="'+b[1]+'" r="80" fill="var(--ac)" opacity=".13" stroke="var(--ac)" stroke-dasharray="4 4"/>';
+o+='<text x="'+(b[0]+60)+'" y="'+(b[1]-66)+'" fill="var(--mu)" font-size="10">zona 1</text><text x="'+(b[0]+130)+'" y="'+(b[1]-122)+'" fill="var(--mu)" font-size="10">zona 2</text>';
+RT.forEach(function(r){o+='<polyline fill="none" stroke="'+r[2]+'" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round" points="'+r[3].map(function(n){return P[n][0].toFixed(0)+","+P[n][1].toFixed(0)}).join(" ")+'"/>'});
+CT.forEach(function(c){var p=P[c[0]];if(c[3]==5)o+='<text x="'+p[0]+'" y="'+(p[1]+7)+'" text-anchor="middle" font-size="22" fill="'+ZC[5]+'" stroke="#7a5a00" stroke-width=".6">★</text>';else o+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(c[3]==0?8:5)+'" fill="'+ZC[c[3]]+'" stroke="#fff" stroke-width="1.5"/>';
+o+='<text x="'+(p[0]+c[4])+'" y="'+(p[1]+c[5])+'" text-anchor="'+c[6]+'" fill="var(--tx)" stroke="var(--ac2)" stroke-width="3" paint-order="stroke" font-weight="'+(c[3]==0||c[3]==5?700:400)+'">'+c[0]+'</text>'});
+RT.forEach(function(r){var p=P[r[3][r[3].length-1]];o+='<circle cx="'+p[0]+'" cy="'+(p[1]-20)+'" r="9" fill="'+r[2]+'"/><text x="'+p[0]+'" y="'+(p[1]-16)+'" text-anchor="middle" fill="#fff" font-weight="700">'+r[0]+'</text>'});
+o+='<text x="796" y="26" text-anchor="end" fill="var(--mu)" font-size="12">N ↑</text></svg>';return o}
+var OP=[["Casas novas em obra","Em alguns condomínios, os anúncios mostram lotes ainda sendo construídos. Obra nova pede paisagismo e depois manutenção. Fale com construtoras e arquitetos antes da entrega."],["Terrenos vazios à venda","Lotes à venda precisam de roçada e limpeza para apresentar bem. Ofereça manutenção a proprietários e corretores."],["Casas para locação e temporada","Casas de alto padrão são anunciadas para locação. A manutenção do jardim entre as estadias vira contrato mensal."],["Áreas comuns e eventos","Condomínios de luxo têm praças, ciclofaixa, clube e espaços de eventos. Contratos com a administração são recorrentes."],["Síndicos e plataformas","Síndicos usam plataformas de cotação. Estar bem avaliado nelas traz pedidos de quem ainda não conhece a empresa."]];
+var PA=[["Arquitetos","Assinam as casas e influenciam quem faz o jardim. Leve portfólio e ofereça execução e manutenção do projeto."],["Paisagistas","Projetam e precisam de quem execute e mantenha. Uma empresa de paisagismo séria costuma ter agrônomo e arquiteto na equipe."],["Construtoras, engenheiros e mestres de obra","Entrega da obra e pós-obra são o momento do jardim."],["Incorporadoras e loteadoras","Áreas comuns, praças e lotes ainda sem casa."],["Corretores e imobiliárias de alto padrão","Casa à venda ou locação precisa de jardim cuidado para ser mostrada."],["Síndicos profissionais e administradoras","Contratos de áreas comuns e indicação para condomínios que administram."],["Empresas de piscina","O cliente com piscina tem jardim. Indicação cruzada."],["Iluminação externa, irrigação e automação","Projetos de área externa feitos em conjunto."],["Marcenaria externa, decks, pergolados e serralheria","Obras de área externa que terminam em jardim."],["Gestores de casas e caseiros","Casas de campo e de temporada precisam de manutenção contínua."],["Engenheiros agrônomos e ambientais","Laudos, licenças e projetos de reflorestamento."],["Viveiros e produtores de grama","Preço e prazo de mudas e grama; podem indicar clientes."],["Fotógrafos e videomakers de imóveis e drone","Material de portfólio e imagem aérea para propostas."]];
+var TL=["CoteiBem (SíndicoNet): plataforma de cotações para condomínios, com fornecedores avaliados por síndicos. É paga para fornecedores; uma matéria de 2023 citava planos a partir de R$ 84 por mês, então confirme o valor atual.","Portais de imóveis (ZAP, Imovelweb): mostram condomínios de alto padrão, casas à venda ou locação e quem assinou o projeto.","Google Earth e drone: medir jardins e gerar imagem aérea para a proposta.","Biblioteca de Anúncios da Meta: ver, de graça, os anúncios dos concorrentes.","Google Alerts: avisos gratuitos sobre obras e lançamentos nos condomínios-alvo.","Pinterest e Instagram: portfólio visual para arquitetos e paisagistas, marcando o profissional e o condomínio com autorização.","LinkedIn: construtoras, incorporadoras e administradoras.","Consulta de CNPJ na Receita Federal: confirmar empresas e sócios.","Feiras e eventos de arquitetura, construção e paisagismo: levantar o calendário e ir primeiro como visitante."];
+var HP=[["Continuar no Fazenda da Grama",["Pedir ao cliente atual indicação aos vizinhos e autorização para fotos do trabalho","Propor plano de manutenção mensal para a casa já atendida","Enviar relatório com fotos após cada visita","Perguntar à administração como funciona o cadastro de prestadores e a entrada de equipes","Mapear arquitetos e construtoras que fazem obras lá e apresentar o trabalho","Oferecer jardim cuidado a corretores de casas à venda ou locação","Fixar um dia de rota no condomínio para reduzir deslocamento","Padrão alto padrão: uniforme, pontualidade, discrição e equipamentos limpos"]],
+["Conquistar condomínios do mesmo nível",["Listar condomínios de alto padrão por zona, descobrindo os nomes nos anúncios de imóveis","Levantar administradora, síndico e associação de cada um","Ver quais casas estão à venda ou locação e quem assina o projeto","Montar portfólio de alto padrão: fotos, vídeo e antes e depois com autorização","Abordar com visita técnica e definir se será cobrada ou abatida do serviço","Cadastrar a empresa no CoteiBem e pedir avaliações","Definir valor mínimo e contrato recorrente"]],
+["Parcerias com arquitetos, construtoras e outros",["Listar arquitetos e paisagistas que assinam casas nos condomínios-alvo","Criar portfólio em PDF e perfil no Instagram para o alto padrão","Marcar conversa com 5 profissionais por mês","Combinar a regra de indicação por escrito, inclusive comissão se houver","Registrar a origem de cada indicação no CRM","Ir a eventos de arquitetura e construção da região"]]];
+var sn=0;
+var ZN=[["Zona 1 · Base: Jacareííí e vizinhos","Jacareííí: Recanto dos Pássaros, Chácaras Reunidas Igarapés, Chácaras Rurais Santa Maria, Altos de Santana, Lago Dourado, Residence Club, Villa Branca, Mirante do Vale. Vizinhos: São José dos Campos, Santa Branca, Guararema, Igaratáá (Águas de Igaratáá, Paraíso de Igaratáá).","Prioridade máxima: serviços pontuais, recorrência e rotas agrupadas. Presença diária em Google, WhatsApp e Instagram local."],
+["Zona 2 · Vale do Paraíba e Alto Tietê","Paraibuna, Caçapava, Taubatéé, Jambeiro, Mogi das Cruzes, Santa Isabel, Nazaré Paulista.","Visitas agrupadas por dia da semana; Google Ads e Meta Ads por cidade; parcerias com corretores e administradoras."],
+["Zona 3 · Serra e interior de chácaras","Atibaia, Bragança Paulista, Piracaia, Joanópolis, Jundiaíí, Itupeva (Fazenda da Grama), Itatiba, Campinas, Valinhos, Campos do Jordão, São Luiz do Paraitinga.","Serviços médios e grandes e projetos (roçada ampla, paisagismo, plantio). Visita com valor mínimo e deslocamento cobrado. Alto padrão em Itupeva: veja a aba Alto padrão."],
+["Zona 4 · Resto do estado (só serviço grande)","Grande São Paulo, Sorocaba, Itu, Porto Feliz, Litoral Nãorte e demais cidades.","Aceitar só com valor mínimo, sinal e mobilização cobrada; juntar vários dias ou clientes na mesma viagem."]];
+var SG=[["Chácaras e condomínios de chácaras","Roçada, manutenção mensal, jardins e limpeza de terreno. Decide: proprietário ou associação do condomínio."],["Reflorestamento e restauração","Plantio de nativas em nascentes, APP e reserva legal. O Programa Nascentes (SP) já financiou plantios por compensação ambiental; confirme as regras atuais. Exige parceria técnica e licenças."],["Paisagismo","Implantação de jardim e manutenção recorrente. Parceria com paisagistas e arquitetos."],["Pousadas, hotéis e eventos","Manutenção recorrente de áreas externas. Igaratáá, Guararema e Paraibuna têm hospedagem rural."],["Condomínios e empresas","Contratos mensais com síndico, administradora ou gestãor de manutenção."]];
+var FG=["Perfil da Empresa no Google","Instagram: Reels, Stories e localização","Facebook: página, grupos locais e Marketplace","WhatsApp Business: catálogo, etiquetas e mensagens rápidas","TikTok e YouTube Shorts","YouTube para projetos completos","LinkedIn para empresas e administradoras","Google Maps e Earth para mapear alvos","Canva e CapCut (versões grátis)"];
+var FP=["Google Ads por serviço e cidade","Meta Ads (Instagram e Facebook) com raio por local","TikTok Ads e YouTube Ads","Marketplaces de serviços (ex.: GetNinjas, OLX)","CRM pago e automação de WhatsApp (ex.: n8n)","LinkedIn Sales Navigator","Canva Pro e CapCut Pro","Impulsionar parcerias com imobiliárias"];
+var RP=[["Mapear regiões",["Mapear no Google Maps e Earth os condomínios de chácaras e loteamentos das zonas 1 e 2","Listar associações e administradoras de cada um","Listar imobiliárias e corretores de chácaras da região","Listar viveiros e paisagistas para parceria","Registrar tudo na planilha com zona, segmento e contato"]],
+["Redes sociais (grátis)",["Postar Reels de antes e depois marcando cidade ou condomínio","Publicar no Perfil do Google com a área atendida","Entrar em grupos locais de chácaras e moradores, respeitando as regras","Anunciar o serviço no Marketplace do Facebook","Postar vídeos curtos no TikTok e YouTube Shorts","Mostrar projetos completos no YouTube","Prospectar administradoras e empresas no LinkedIn"]],
+["Anúncios pagos",["Google Ads por serviço e cidade (roçada, jardinagem, manutenção de chácara)","Meta Ads com raio de localização nos condomínios alvo","Testar vídeo curto de antes e depois","Remarketing de quem visitou o site ou chamou no WhatsApp, dentro das regras","Medir custo por venda em cada cidade e pausar o que não vende"]],
+["Parcerias regiãonais",["Combinar indicação com corretores e imobiliárias de chácaras","Apresentar a empresa a administradoras e associações","Fechar parceria com paisagistas e engenheiros ambientais","Conversar com secretarias de meio ambiente e ONGs de restauração","Escrever a regra de indicação"]],
+["Reflorestamento e restauração",["Estudar o Programa Nascentes, o CAR e o Código Florestal","Fechar parceria com profissional técnico habilitado para o projeto","Montar a oferta: plantio, manutenção e acompanhamento das mudas","Cotar mudas nativas com viveiros regiãonais","Validar licenças e exigências antes de vender"]],
+["Atender longe com lucro",["Definir valor mínimo por zona","Cobrar deslocamento ou mobilização","Exigir sinal antes de mobilizar a equipe","Agrupar visitas na mesma viagem","Fazer avaliação remota por fotos e vídeo quando possível"]]];
+var PL=[["Dias 1 a 7","Diagnóstico e controle básico","s1"],["Dias 8 a 30","Comercial, aquisição e rentabilidade","s2"],["Dias 31 a 60","Padronização e capacidade operacional","s3"],["Dias 61 a 90","Otimização e crescimento controlado","s4"]];
+var S={};try{S=JSON.parse(localStorage.getItem("jp")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("jp",JSON.stringify(S))}catch(e){}}
+function ids(){var a=[];ST.forEach(function(s){a=a.concat(sl(s))});return a}
+function pct(list){var n=0;list.forEach(function(i){if(S[i])n++});return list.length?Math.round(n/list.length*100):0}
+function chk(id,txt,on){return '<label class="'+(S[id]?"done":"")+'"><input type="checkbox" data-i="'+id+'"'+(S[id]?" checked":"")+'><span>'+txt+'</span></label>'}
+var tab="esqueleto";var open={};
+var TABS=[["esqueleto","Esqueleto"],["visual","Visual"],["slides","Slides"],["mapa","Mapa"],["regiãoes","Regiões"],["alto","Alto padrão"],["etapas","Etapas"],["plano","90 dias"]];
+function view(){
+ var h="";
+ if(tab=="esqueleto"){
+  h+='<h2>O que a empresa é</h2><div class="card"><p>Duas frentes comerciais conectadas a uma mesma operação e um mesmo financeiro.</p><div class="grid" style="margin-top:8px"><div><b>Residencial</b><br>Serviços rápidos, orçamento ágil, recorrência</div><div><b>Empresarial</b><br>Prospecção, visita técnica, contratos</div></div></div>';
+  h+='<h2>Do mercado ao recebimento</h2><div class="chain">'+CHAIN.map(function(c){return '<div><b>'+c[0]+'</b><small>'+c[1]+'</small></div>'}).join("")+'</div>';
+  h+='<h2>Áreas de apoio</h2><div class="grid">'+AREAS.map(function(a){return '<div>'+a+'</div>'}).join("")+'</div><p style="margin-top:8px">Com equipe pequena, uma pessoa pode ter várias áreas, desde que cada tarefa tenha dono.</p>';
+  h+='<h2>O que já temos</h2><div class="card">'+ASSETS.map(function(a){if(a[2]&&S[a[0]]===undefined)S[a[0]]=1;return chk(a[0],a[1])}).join("")+'</div>';
+ }
+ if(tab=="etapas"){
+  h+='<p>Abra a etapa, depois o processo, e marque cada tarefa conforme executar.</p>';
+  ST.forEach(function(s){var l=sl(s);h+='<details id="'+s.id+'"'+(open[s.id]?" open":"")+'><summary><div><h3>'+s.t+'</h3><p>'+s.g+'</p></div><span class="pct">'+pct(l)+'%</span></summary><div class="body">'+s.ps.map(function(p,j){var pi=s.id+"_"+j,pl=p[1].map(function(_,i){return pi+"_"+i});return '<details id="'+pi+'"'+(open[pi]?" open":"")+' style="margin:8px 0"><summary style="padding:10px 12px"><b style="font-size:.95rem">'+p[0]+'</b><span class="pct">'+pct(pl)+'%</span></summary><div class="body">'+how(s.id,j)+p[1].map(function(t,i){return chk(pi+"_"+i,"<b>"+(i+1)+".</b> "+t)}).join("")+'</div></details>'}).join("")+'<div class="kpi">📊 Indicador: '+s.k+'</div></div></details>'});
+ }
+ if(tab=="visual"){h+='<p>Fluxo simples da empresa. Toque num processo para abrir os passos.</p><div class="flow">';ST.forEach(function(s,n){var l=sl(s);h+=(n?'<div class="arrow">↓</div>':'')+'<div class="card"><div style="display:flex;justify-content:space-between"><b>'+s.t+'</b><span class="pct">'+pct(l)+'%</span></div><div class="bar" style="margin:8px 0"><i style="width:'+pct(l)+'%"></i></div><div>'+s.ps.map(function(p,j){var pi=s.id+"_"+j,q=pct(p[1].map(function(_,i){return pi+"_"+i}));return '<button class="chip'+(q==100?" full":q>0?" part":"")+'" data-go="'+s.id+'|'+pi+'">'+p[0]+'</button>'}).join("")+'</div></div>'});h+='</div><p>Cheio: concluído. Claro: em andamento. Vazio: não iniciado.</p>';}
+ if(tab=="slides"){var x=SL[sn];h+='<div class="card slide"><small>'+(sn+1)+' / '+SL.length+'</small><h2>'+x[0]+'</h2><ul>'+x[1].map(function(b){return '<li>'+b+'</li>'}).join("")+'</ul></div><div style="display:flex;gap:8px"><button class="nb b" data-sl="-1">← Voltar</button><button class="nb" data-sl="1">Avançar →</button></div><div class="dots">'+SL.map(function(_,i){return '<i class="'+(i==sn?"on":"")+'"></i>'}).join("")+'</div>';}
+ if(tab=="regiãoes"){h+='<div class="card"><b>Base: Jacareííí, interior de SP</b><p>Atendemos grande parte do estado. Quanto mais longe, maior precisa ser o serviço e o valor mínimo.</p></div><h2>Zonas de atuação</h2>'+ZN.map(function(z){return '<div class="card"><b>'+z[0]+'</b><p>'+z[1]+'</p><div class="how" style="margin:8px 0 0">'+z[2]+'</div></div>'}).join("")+'<p>Os bairros de Jacareííí e das cidades vizinhas aparecem em anúncios de chácaras da região. As demais cidades são hipóteses de mercado para validar com testes.</p><h2>Segmentos de maior valor</h2>'+SG.map(function(g){return '<div class="card"><b>'+g[0]+'</b><p>'+g[1]+'</p></div>'}).join("")+'<h2>Redes sociais e ferramentas</h2><div class="two"><div class="card"><b>🆓 Grátis</b><ul>'+FG.map(function(t){return '<li>'+t+'</li>'}).join("")+'</ul></div><div class="card"><b>💰 Pagas</b><ul>'+FP.map(function(t){return '<li>'+t+'</li>'}).join("")+'</ul></div></div><h2>Plano de ação regiãonal</h2>'+RP.map(function(g,n){var l=g[1].map(function(_,i){return "r"+n+"_"+i});return '<details id="rg'+n+'"'+(open["rg"+n]?" open":"")+'><summary><h3>'+g[0]+'</h3><span class="pct">'+pct(l)+'%</span></summary><div class="body">'+g[1].map(function(t,i){return chk("r"+n+"_"+i,"<b>"+(i+1)+".</b> "+t)}).join("")+'</div></details>'}).join("");}
+ if(tab=="mapa"){h+='<p>Mapa esquemático a partir de Jacareííí. As linhas são as trajetórias de atendimento; os círculos mostram o alcance aproximado em linha reta.</p><div class="card" style="padding:6px">'+mapSvg()+'</div><div class="zl"><span style="background:'+ZC[0]+'"></span>Base<span style="background:'+ZC[1]+'"></span>Zona 1<span style="background:'+ZC[2]+'"></span>Zona 2<span style="background:'+ZC[3]+'"></span>Zona 3<span style="background:'+ZC[4]+'"></span>Zona 4<span style="background:'+ZC[5]+'"></span>Alto padrão</div><h2>Trajetórias</h2>'+RT.map(function(r){return '<div class="card" style="border-left:5px solid '+r[2]+'"><b>Rota '+r[0]+' · '+r[1]+'</b><p>'+r[3].join(" → ")+'</p><p>'+r[4]+'</p></div>'}).join("")+'<p>Posições aproximadas e traçado ilustrativo. Não representa o caminho real das estradas.</p>';}
+ if(tab=="alto"){h+='<div class="card"><b>⭐ Fazenda da Grama (Itupeva)</b><p>Os anúncios descrevem um dos condomínios mais exclusivos da região, com campo de golfe, praia artificial, restaurantes e segurança 24 horas, projeto da Jack Nicklaus Design. As casas são assinadas por arquitetos, e os anúncios citam nomes como Davi Bastos e Antonio Scarpa. Quem assina a casa influencia o jardim e a manutenção, então arquitetos são um canal direto.</p></div><h2>Condomínios do mesmo nível</h2><div class="card"><p>Citados nos mesmos anúncios de Itupeva: Terras da Alvorada, Fazenda Serra Azul, Ibi Aram, Terras de Santa Teresa e Poema do Japy. Pesquise os nomes das zonas 2 e 3 para completar a lista.</p></div><h2>Oportunidades que passam despercebidas</h2>'+OP.map(function(g){return '<div class="card"><b>'+g[0]+'</b><p>'+g[1]+'</p></div>'}).join("")+'<h2>Parceiros que talvez vocêê não tenha pensado</h2>'+PA.map(function(g){return '<div class="card"><b>'+g[0]+'</b><p>'+g[1]+'</p></div>'}).join("")+'<h2>Ferramentas e plataformas novas</h2><div class="card"><ul>'+TL.map(function(t){return '<li>'+t+'</li>'}).join("")+'</ul></div><h2>Plano de ação alto padrão</h2>'+HP.map(function(g,n){var l=g[1].map(function(_,i){return "h"+n+"_"+i});return '<details id="hp'+n+'"'+(open["hp"+n]?" open":"")+'><summary><h3>'+g[0]+'</h3><span class="pct">'+pct(l)+'%</span></summary><div class="body">'+g[1].map(function(t,i){return chk("h"+n+"_"+i,"<b>"+(i+1)+".</b> "+t)}).join("")+'</div></details>'}).join("");}
+ if(tab=="plano"){
+  h+='<p>Ordem sugerida: medir, padrãonizar e só depois aumentar o volume.</p>';
+  PL.forEach(function(p){h+='<div class="card"><b>'+p[0]+'</b><span class="tag">'+p[1]+'</span></div>'});
+  h+='<div class="card"><p>Ao final dos 90 dias, confira: todo contato é registrado, há prospecção semanal, orçamentos seguem custo e margem, agenda por rota, cobranças acompanhadas e painel mensal funcionando.</p></div>';
+ }
+ document.getElementById("v").innerHTML=h;
+ document.getElementById("nav").innerHTML=TABS.map(function(t){return '<button data-t="'+t[0]+'" class="'+(t[0]==tab?"on":"")+'">'+t[1]+'</button>'}).join("");
+ var p=pct(ids());document.getElementById("tot").textContent=p+"%";document.getElementById("totbar").style.width=p+"%";
+}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-t]");if(b){tab=b.getAttribute("data-t");location.hash=tab;view();window.scrollTo(0,0)}});
+document.addEventListener("click",function(e){var g=e.target.closest("[data-go]");if(!g)return;var a=g.getAttribute("data-go").split("|");open[a[0]]=true;open[a[1]]=true;tab="etapas";location.hash="etapas";view();var el=document.getElementById(a[1]);if(el)el.scrollIntoView()});
+document.addEventListener("click",function(e){var g=e.target.closest("[data-sl]");if(!g)return;sn=Math.max(0,Math.min(SL.length-1,sn+ +g.getAttribute("data-sl")));view()});
+var tx=0;document.addEventListener("touchstart",function(e){tx=e.touches[0].clientX},{passive:true});document.addEventListener("touchend",function(e){if(tab!="slides")return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60){sn=Math.max(0,Math.min(SL.length-1,sn+(d<0?1:-1)));view()}},{passive:true});
+document.addEventListener("change",function(e){var i=e.target.getAttribute&&e.target.getAttribute("data-i");if(!i)return;S[i]=e.target.checked?1:0;save();document.querySelectorAll("details[id]").forEach(function(d){open[d.id]=d.open});view()});
+document.getElementById("rs").onclick=function(){if(confirm("Zerar todo o progresso?")){S={};save();view()}};
+var hs=location.hash.slice(1);if(hs=="estrategia"||hs=="mapa_luxo"||hs=="mapa"||hs=="alto"||hs=="slides"||hs=="regiãoes"||hs=="visual"||hs=="etapas"||hs=="plano"||hs=="esqueleto")tab=hs;
+view();
+
+</script>
+</body>
+</html>
