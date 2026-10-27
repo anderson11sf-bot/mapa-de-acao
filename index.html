@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardim Padrão — Hub Operacional & Mapa de Ação Comercial por Níveis</title>
+    <title>Jardim Padrão — Da Operação à Empresa que Vende | Hub Comercial Executivo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -30,6 +30,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                         display: ['Oswald', 'sans-serif']
                     }
                 }
@@ -62,30 +63,30 @@
     <!-- Toast Notification for Copy Actions -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 hidden bg-brand-emerald text-slate-950 font-bold px-5 py-3 rounded-xl shadow-2xl border border-emerald-300 flex items-center gap-2 transition-all duration-300">
         <span>✅</span>
-        <span id="toast-msg">Script copiado para a área de transferência!</span>
+        <span id="toast-msg">Copiado para a área de transferência!</span>
     </div>
 
-    <!-- Top Sticky Header & Navigation (7 Tabs) -->
+    <!-- Top Sticky Header & Navigation (8 Tabs) -->
     <header class="sticky top-0 z-40 bg-[#070F0B]/95 backdrop-blur-md border-b border-brand-border shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between py-3 gap-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <span class="bg-brand-forest text-white font-display font-bold px-2.5 py-1 rounded text-xs tracking-wider uppercase">HUB EXECUTIVO 2.0</span>
+                        <span class="bg-brand-forest text-white font-display font-bold px-2.5 py-1 rounded text-xs tracking-wider uppercase">HUB ESTRATÉGICO 3.0</span>
                         <div>
                             <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white flex items-center gap-2">
-                                🌱 JARDIM PADRÃO <span class="text-brand-gold font-normal text-sm hidden sm:inline">• Mapa de Ação & Funil Comercial</span>
+                                🌱 JARDIM PADRÃO <span class="text-brand-gold font-normal text-sm hidden sm:inline">• Da Operação à Empresa que Vende</span>
                             </h1>
-                            <p class="text-xs text-brand-slate">Estrutura Operacional por Níveis: Outbound, Tráfego Pago, Alto Padrão e Gestão</p>
+                            <p class="text-xs text-brand-slate">Metodologia dos 7 Pilares, Funil de 9 Etapas, Níveis de Execução e Gestão Sem Gargalo</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Global Progress and Active Status Pill -->
+                <!-- Global Progress and Reset -->
                 <div class="flex items-center gap-4 bg-brand-card border border-brand-border px-3.5 py-2 rounded-xl">
                     <div class="space-y-1 min-w-[140px] sm:min-w-[170px]">
                         <div class="flex justify-between text-[11px] font-bold">
-                            <span class="text-brand-slate">Progresso Global:</span>
+                            <span class="text-brand-slate">Ações Concluídas:</span>
                             <span id="global-progress-txt" class="text-brand-emerald">0%</span>
                         </div>
                         <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-brand-border">
@@ -98,28 +99,31 @@
                 </div>
             </div>
 
-            <!-- 7 Navigation Tabs Organized by Progression -->
+            <!-- 8 Navigation Tabs Organized by Strategic Flow -->
             <nav class="flex items-center gap-1.5 overflow-x-auto pb-2.5 pt-1 no-scrollbar" aria-label="Navegação dos Níveis">
-                <button onclick="switchTab('tab-visao')" id="btn-tab-visao" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-bold transition-all bg-brand-forest text-white shadow-lg">
-                    🗺️ 1. O Mapa & Os Níveis
+                <button onclick="switchTab('tab-pilares')" id="btn-tab-pilares" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-bold transition-all bg-brand-forest text-white shadow-lg">
+                    🧭 1. Direção & Os 7 Pilares
+                </button>
+                <button onclick="switchTab('tab-jornada')" id="btn-tab-jornada" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
+                    🛣️ 2. Jornada Comercial (9 Etapas)
                 </button>
                 <button onclick="switchTab('tab-n1')" id="btn-tab-n1" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    ⚡ 2. NÍVEL 1: Caixa Rápido (Outbound Frio)
+                    ⚡ 3. NÍVEL 1: Caixa Rápido (Outbound)
                 </button>
                 <button onclick="switchTab('tab-n2')" id="btn-tab-n2" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    🚀 3. NÍVEL 2: Escala & Tráfego Pago (Inbound)
+                    🚀 4. NÍVEL 2: Tráfego Pago (Inbound)
                 </button>
                 <button onclick="switchTab('tab-n3')" id="btn-tab-n3" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    💎 4. NÍVEL 3: Alto Padrão (Fazenda da Grama)
+                    💎 5. NÍVEL 3: Alto Padrão (Fazenda da Grama)
                 </button>
                 <button onclick="switchTab('tab-n4')" id="btn-tab-n4" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    🛠️ 5. NÍVEL 4: Rotas & Operação 90 Dias
+                    🛠️ 6. NÍVEL 4: Rotas & Operação 90 Dias
                 </button>
                 <button onclick="switchTab('tab-scripts')" id="btn-tab-scripts" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    📋 6. Central de Scripts (Copiar)
+                    📋 7. Central de Scripts (WhatsApp)
                 </button>
                 <button onclick="switchTab('tab-calc')" id="btn-tab-calc" class="tab-btn shrink-0 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-card text-brand-slate hover:bg-brand-cardLight">
-                    🧮 7. Calculadora de Orçamento
+                    🧮 8. Calculadora de Orçamento
                 </button>
             </nav>
         </div>
@@ -129,244 +133,362 @@
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
         <!-- ==========================================
-             ABA 1: VISÃO GERAL, DIFERENCIAÇÃO E NÍVEIS
+             ABA 1: DIREÇÃO & OS 7 PILARES (DA OPERAÇÃO À EMPRESA QUE VENDE)
              ========================================== -->
-        <section id="tab-visao" class="tab-pane space-y-8">
-            <!-- Strategic Upgrade Banner -->
-            <div class="bg-gradient-to-r from-brand-card via-[#0F241A] to-brand-card border border-brand-border rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <section id="tab-pilares" class="tab-pane space-y-8">
+            <!-- Strategic Upgrade Banner inspired by Page 1 & 2 -->
+            <div class="bg-gradient-to-r from-brand-card via-[#0F241A] to-brand-card border-2 border-brand-emerald/60 rounded-2xl p-6 sm:p-8 shadow-2xl">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                     <div class="space-y-3 max-w-3xl">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-brand-emerald border border-emerald-500/30">
-                            🧭 CLAREZA TOTAL: DO ZERO AO CRESCIMENTO RECORRENTE
+                            🎯 ENCONTRO DE ALINHAMENTO ESTRATÉGICO
                         </span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                            Por que você estava confuso e como a divisão em NÍVEIS destrava a sua operação
+                        <h2 class="font-serif text-2xl sm:text-4xl text-white tracking-tight">
+                            Da equipe que executa à <span class="italic text-brand-gold">empresa que vende</span>
                         </h2>
                         <p class="text-brand-slate text-sm sm:text-base leading-relaxed">
-                            Antes, todas as tarefas de marketing, busca de leads no Google, tráfego pago, visita técnica, obras de luxo e planilhas financeiras estavam jogadas juntas em um único bloco. Parecia que você tinha que fazer tudo ao mesmo tempo. 
-                            <strong>A regra de ouro: você só avança de nível quando a fase anterior estiver executada e gerando caixa.</strong>
+                            Muitas empresas têm excelente estrutura de campo, ferramental e equipe própria para jardinagem e paisagismo. Mas <strong>pouquíssimas sabem vender com previsibilidade</strong>. O objetivo desta estrutura não é apenas postar em rede social: é <strong>estruturar a Jardim Padrão para vender de forma prática e segura</strong>, sem que o proprietário seja o gargalo de tudo.
                         </p>
                     </div>
                     <div class="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5">
-                        <button onclick="switchTab('tab-n1')" class="px-5 py-3.5 rounded-xl bg-brand-emerald text-slate-950 font-extrabold text-xs sm:text-sm hover:bg-emerald-400 transition shadow-lg pulse-green">
-                            Iniciar no NÍVEL 1 (Caixa Imediato) →
+                        <button onclick="switchTab('tab-jornada')" class="px-5 py-3.5 rounded-xl bg-brand-emerald text-slate-950 font-extrabold text-xs sm:text-sm hover:bg-emerald-400 transition shadow-lg pulse-green">
+                            Ver Jornada Comercial (9 Etapas) →
                         </button>
-                        <button onclick="switchTab('tab-scripts')" class="px-5 py-3 rounded-xl bg-brand-cardLight text-brand-gold font-bold text-xs sm:text-sm border border-brand-border hover:bg-brand-border transition">
-                            Ver Scripts de WhatsApp Prontos →
+                        <button onclick="switchTab('tab-n1')" class="px-5 py-3 rounded-xl bg-brand-cardLight text-brand-gold font-bold text-xs sm:text-sm border border-brand-border hover:bg-brand-border transition">
+                            Começar pelo Nível 1 (Caixa Imediato) →
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- COMPARADOR MATADOR: OUTBOUND A FRIO vs. INBOUND TRÁFEGO PAGO -->
+            <!-- O DIAGNÓSTICO: O PROBLEMA DO "ÚNICO MOTOR DE DEMANDA" (Inspirado na Página 4) -->
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-5">
-                <div class="border-b border-brand-border pb-3">
-                    <span class="text-xs font-extrabold text-brand-gold uppercase tracking-wider">💡 ESCLARECIMENTO DEFINITIVO DO SEU FUNIL</span>
-                    <h3 class="text-lg sm:text-xl font-extrabold text-white mt-1">
-                        Qual é a diferença entre "Buscar Leads no Google" e "Fazer Anúncios Pagos"?
-                    </h3>
-                    <p class="text-xs sm:text-sm text-brand-slate">
-                        Você citou essa dúvida exata: <em>"Buscar leads no Google é venda ou marketing? E o anúncio pago onde entra?"</em> Veja a separação prática abaixo:
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Outbound Box -->
-                    <div class="bg-slate-950/80 border-2 border-emerald-500/40 rounded-2xl p-5 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-brand-emerald font-extrabold text-xs uppercase">
-                                PROSPECÇÃO ATIVA (OUTBOUND) • NÍVEL 1
-                            </span>
-                            <span class="text-xs font-bold text-brand-gold">Custo em Mídia: R$ 0,00</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">Você vai até o lead que ainda não te conhece (Contato no Frio)</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            <strong>Como funciona:</strong> Você abre o Google Maps, Instagram ou lista de condomínios da sua região (Jacareí, SJC, etc.), pega o contato de chácaras, empresas ou residências, e <strong>manda uma mensagem direta no WhatsApp ou liga</strong>.
-                        </p>
-                        <div class="bg-brand-card p-3 rounded-xl border border-brand-border text-xs space-y-1">
-                            <p><strong class="text-brand-emerald">Quando usar:</strong> No Nível 1. Gera dinheiro rápido no bolso, valida a conversa e você não gasta 1 centavo com anúncios.</p>
-                            <p><strong class="text-white">Postura necessária:</strong> Abordagem consultiva e sem ser chato (com o script específico de prospecção fria que disponibilizamos na Aba 6).</p>
-                        </div>
-                    </div>
-
-                    <!-- Inbound Box -->
-                    <div class="bg-slate-950/80 border-2 border-blue-500/40 rounded-2xl p-5 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 font-extrabold text-xs uppercase">
-                                TRÁFEGO PAGO (INBOUND) • NÍVEL 2
-                            </span>
-                            <span class="text-xs font-bold text-blue-400">Escala Automatizada</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">O anúncio convence o cliente a chamar a SUA empresa</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            <strong>Como funciona:</strong> Você coloca um orçamento diário no Meta Ads (Instagram/Facebook com raio na sua cidade) ou no Google Ads. O anúncio mostra fotos reais do "antes e depois", e a pessoa clica no botão <em>"Solicitar Orçamento no WhatsApp"</em>.
-                        </p>
-                        <div class="bg-brand-card p-3 rounded-xl border border-brand-border text-xs space-y-1">
-                            <p><strong class="text-blue-300">Quando usar:</strong> No Nível 2, depois que você já tiver caixa gerado pelo Nível 1 e souber exatamente o preço e tempo de cada serviço.</p>
-                            <p><strong class="text-white">Postura necessária:</strong> Velocidade recorde de resposta (responder em até 10 minutos) e script de triagem rápida.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ARQUITETURA EM 4 NÍVEIS -->
-            <div class="space-y-4">
-                <div class="flex items-center justify-between border-b border-brand-border pb-3">
+                <div class="border-b border-brand-border pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                        <h3 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
-                            <span>🪜</span> A Linha de Evolução em 4 Níveis (Como Operar)
+                        <span class="text-xs font-extrabold text-rose-400 uppercase tracking-wider">⚠️ O DIAGNÓSTICO ATUAL</span>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white mt-1">
+                            O Perigo de Ter um Único Motor de Demanda (A Gangorra)
                         </h3>
-                        <p class="text-xs sm:text-sm text-brand-slate">
-                            Siga esta ordem exata. Não tente fazer tráfego pago ou entrar em condomínio de luxo sem antes dominar o Nível 1.
-                        </p>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <!-- Nível 1 -->
-                    <div onclick="switchTab('tab-n1')" class="cursor-pointer bg-brand-card border-2 border-brand-emerald rounded-2xl p-5 hover:scale-[1.01] transition space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-brand-emerald text-[11px] font-extrabold">NÍVEL 1</span>
-                            <span class="text-xs text-brand-emerald font-bold">FASE BASE</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">Caixa Rápido & Outbound</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            Reativação da base antiga, indicações imediatas e prospecção a frio no Google Maps/bairros de Jacareí. Sem investimento em anúncio.
-                        </p>
-                        <span class="inline-block text-xs font-bold text-brand-emerald hover:underline">Acessar Nível 1 →</span>
-                    </div>
-
-                    <!-- Nível 2 -->
-                    <div onclick="switchTab('tab-n2')" class="cursor-pointer bg-brand-card border border-brand-border hover:border-blue-500 rounded-2xl p-5 hover:scale-[1.01] transition space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 text-[11px] font-extrabold">NÍVEL 2</span>
-                            <span class="text-xs text-brand-slate font-bold">ESCALA</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">Tráfego Pago & Inbound</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            Anúncios patrocinados no Meta e Google para bairros selecionados, fluxo de resposta em 15 minutos no WhatsApp e proposta ágil.
-                        </p>
-                        <span class="inline-block text-xs font-bold text-blue-400 hover:underline">Acessar Nível 2 →</span>
-                    </div>
-
-                    <!-- Nível 3 -->
-                    <div onclick="switchTab('tab-n3')" class="cursor-pointer bg-brand-card border border-brand-border hover:border-brand-gold rounded-2xl p-5 hover:scale-[1.01] transition space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-amber-500/20 text-brand-gold text-[11px] font-extrabold">NÍVEL 3</span>
-                            <span class="text-xs text-brand-slate font-bold">ALTA MARGEM</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">Alto Padrão & Parcerias</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            Fazenda da Grama (Itupeva), chácaras de luxo, parceria com arquitetos renomados, construtoras e síndicos profissionais (CoteiBem).
-                        </p>
-                        <span class="inline-block text-xs font-bold text-brand-gold hover:underline">Acessar Nível 3 →</span>
-                    </div>
-
-                    <!-- Nível 4 -->
-                    <div onclick="switchTab('tab-n4')" class="cursor-pointer bg-brand-card border border-brand-border hover:border-purple-500 rounded-2xl p-5 hover:scale-[1.01] transition space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 text-[11px] font-extrabold">NÍVEL 4</span>
-                            <span class="text-xs text-brand-slate font-bold">GESTÃO</span>
-                        </div>
-                        <h4 class="text-base font-extrabold text-white">Rotas & Ciclo de 90 Dias</h4>
-                        <p class="text-xs text-brand-slate leading-relaxed">
-                            Agrupamento das 4 zonas/rotas de atendimento, ficha de custos com margem travada, ordem de serviço e rotina de gestão semanal.
-                        </p>
-                        <span class="inline-block text-xs font-bold text-purple-400 hover:underline">Acessar Nível 4 →</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- O FUNIL COMERCIAL COMPLETO DE 12 ETAPAS -->
-            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div>
-                        <h3 class="text-base sm:text-lg font-extrabold text-white">
-                            🔄 O Funil Comercial de 12 Etapas (Da Prospecção ao Pós-Venda)
-                        </h3>
-                        <p class="text-xs text-brand-slate">Todos os clientes (residenciais, chácaras ou empresas) passam exatamente por esta esteira:</p>
-                    </div>
-                    <span class="text-[11px] font-bold text-brand-emerald bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full">
-                        Regra: Nenhum lead sem dono e sem próxima ação
+                    <span class="text-xs font-bold text-brand-slate bg-slate-950 px-3 py-1 rounded-full border border-brand-border">
+                        Meses parados vs. Meses espremidos
                     </span>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-2">
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">1. ORIGEM</span>
-                        <p class="text-xs font-bold text-white">Canal Identificado</p>
-                        <p class="text-[11px] text-brand-slate">Google, Outbound, Indicação ou Anúncio.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <!-- Visual Graph Simulator -->
+                    <div class="lg:col-span-6 bg-slate-950 p-5 rounded-2xl border border-brand-border space-y-4">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-rose-400 font-bold">〰️ Demanda que Chega (Sem Previsibilidade)</span>
+                            <span class="text-brand-slate">---- Custo Fixo da Equipe Todo Mês</span>
+                        </div>
+                        <div class="h-28 w-full flex items-end justify-between gap-2 pt-4 px-2 border-b border-brand-border">
+                            <div class="w-8 bg-brand-forest/40 rounded-t h-[40%] text-[10px] text-center text-slate-400">Mês 1</div>
+                            <div class="w-8 bg-brand-emerald rounded-t h-[95%] text-[10px] text-center text-slate-950 font-bold">Mês 2</div>
+                            <div class="w-8 bg-rose-500/60 rounded-t h-[20%] text-[10px] text-center text-rose-300 font-bold">Mês 3</div>
+                            <div class="w-8 bg-brand-forest/60 rounded-t h-[80%] text-[10px] text-center text-slate-300">Mês 4</div>
+                            <div class="w-8 bg-rose-500/80 rounded-t h-[30%] text-[10px] text-center text-rose-300 font-bold">Mês 5</div>
+                            <div class="w-8 bg-brand-emerald rounded-t h-[90%] text-[10px] text-center text-slate-950 font-bold">Mês 6</div>
+                        </div>
+                        <p class="text-[11px] text-brand-slate text-center">
+                            Quando a empresa depende só de indicação que "cai do céu", a equipe fica ociosa em semanas fracas e sobrecarregada em outras.
+                        </p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">2. 1º CONTATO</span>
-                        <p class="text-xs font-bold text-white">Resposta Rápida</p>
-                        <p class="text-[11px] text-brand-slate">Pedir fotos, metragem aproximada e local.</p>
+
+                    <!-- 4 Sintomas do Diagnóstico -->
+                    <div class="lg:col-span-6 space-y-3">
+                        <div class="flex items-start gap-3 p-3 bg-slate-950 rounded-xl border border-brand-border">
+                            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-xs shrink-0">01</span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Um único cliente ou indicação define o ritmo</h4>
+                                <p class="text-[11px] text-brand-slate">Se a indicação para de tocar no WhatsApp, a empresa entra em modo de desespero.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-slate-950 rounded-xl border border-brand-border">
+                            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-xs shrink-0">02</span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Equipe e ferramentas mantidas mesmo na ociosidade</h4>
+                                <p class="text-[11px] text-brand-slate">O custo da diária, combustível e manutenção continua correndo todo santo dia.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-slate-950 rounded-xl border border-brand-border">
+                            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-xs shrink-0">03</span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Difícil planejar rotas e compras de insumos</h4>
+                                <p class="text-[11px] text-brand-slate">Sem saber onde a equipe estará na próxima semana, perde-se dinheiro com deslocamento.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-slate-950 rounded-xl border border-brand-border">
+                            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-xs shrink-0">04</span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Trabalhos incríveis entregues que não viram portfólio</h4>
+                                <p class="text-[11px] text-brand-slate">O jardim fica impecável, mas ninguém tira foto de alta qualidade do antes e depois para alimentar novos clientes.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">3. TRIAGEM</span>
-                        <p class="text-xs font-bold text-white">Classificação</p>
-                        <p class="text-[11px] text-brand-slate">Simples (foto) ou Complexo (visita técnica).</p>
+                </div>
+            </div>
+
+            <!-- ONDE QUEREMOS CHEGAR: VENDER DE FORMA PRÁTICA E SEGURA (Inspirado na Página 5) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Coluna Segura -->
+                <div class="bg-brand-card border-2 border-emerald-500/40 rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center gap-2 text-brand-emerald">
+                        <span class="text-xl">🛡️</span>
+                        <h3 class="text-base font-extrabold text-white uppercase tracking-wider">Crescer de Forma Segura</h3>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">4. VISITA</span>
-                        <p class="text-xs font-bold text-white">Medição & Fotos</p>
-                        <p class="text-[11px] text-brand-slate">Avaliar riscos, maquinário e descarte.</p>
+                    <ul class="space-y-2.5 text-xs text-brand-slate">
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-emerald font-bold">✓</span>
+                            <span><strong>Sem arriscar os clientes atuais:</strong> Cuidar da base fiel que já confia no seu trabalho enquanto abre novas frentes.</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-emerald font-bold">✓</span>
+                            <span><strong>Sem vender além da capacidade:</strong> Vender exatamente o que a equipe tem braço para executar no padrão de excelência.</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-emerald font-bold">✓</span>
+                            <span><strong>Sem tudo depender de uma pessoa só:</strong> O dono deixa de ser o atendente, o orçamentista, o motorista e o cobrador ao mesmo tempo.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Prática -->
+                <div class="bg-brand-card border-2 border-brand-gold/40 rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center gap-2 text-brand-gold">
+                        <span class="text-xl">⚡</span>
+                        <h3 class="text-base font-extrabold text-white uppercase tracking-wider">Crescer de Forma Prática</h3>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">5. FICHA CUSTO</span>
-                        <p class="text-xs font-bold text-white">Margem Travada</p>
-                        <p class="text-[11px] text-brand-slate">Mão de obra + combustível + margem mínima.</p>
+                    <ul class="space-y-2.5 text-xs text-brand-slate">
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-gold font-bold">✓</span>
+                            <span><strong>Processos simples e sem burocracia:</strong> Checklist de visita técnica em 5 minutos e calculadora rápida de margem.</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-gold font-bold">✓</span>
+                            <span><strong>Responsáveis claros para cada etapa:</strong> Todo mundo sabe quem atende o WhatsApp, quem visita e quem confere a qualidade.</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-brand-gold font-bold">✓</span>
+                            <span><strong>Rotina que a equipe toca no piloto automático:</strong> Ordem de serviço no celular antes da van sair para a estrada.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- OS 7 PILARES ESTRATÉGICOS (Inspirado na Página 6) -->
+            <div class="space-y-4">
+                <div class="border-b border-brand-border pb-3">
+                    <span class="text-xs font-extrabold text-brand-gold uppercase tracking-wider">🏛️ A BASE DA CONSTRUÇÃO</span>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-white mt-1">
+                        Os Sete Pilares para a Jardim Padrão Vender Direto
+                    </h3>
+                    <p class="text-xs sm:text-sm text-brand-slate">
+                        Não vamos cuidar só de Instagram. Vamos estruturar a empresa inteira do contato ao recebimento:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">01. DIREÇÃO</span>
+                        <h4 class="text-xs font-bold text-white">Onde começar e quando expandir</h4>
+                        <p class="text-[11px] text-brand-slate">Começar pelo residencial e chácaras locais de Jacareí. Construtoras e condomínios em paralelo. O comercial grande vem depois.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">6. PROPOSTA</span>
-                        <p class="text-xs font-bold text-white">Envio no Prazo</p>
-                        <p class="text-[11px] text-brand-slate">Escopo claro, prazo de execução e validade.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-emerald-500/20 text-brand-emerald">02. PROTEÇÃO</span>
+                        <h4 class="text-xs font-bold text-white">Preservar o negócio atual</h4>
+                        <p class="text-[11px] text-brand-slate">Crescer sem encostar nos parceiros históricos ou canibalizar serviços que já dão lucro certo.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-brand-gold">7. FOLLOW-UP</span>
-                        <p class="text-xs font-bold text-white">Retorno Ativo</p>
-                        <p class="text-[11px] text-brand-slate">Contato no dia 2, 5 e 10 sem baixar preço.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-brand-gold/20 text-brand-gold">03. POSICIONAMENTO</span>
+                        <h4 class="text-xs font-bold text-white">Como queremos ser lembrados</h4>
+                        <p class="text-[11px] text-brand-slate">Não somos 'o cortador de grama barato'. Somos a empresa que cuida do patrimônio verde com segurança e alto padrão.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-brand-gold">8. FECHAMENTO</span>
-                        <p class="text-xs font-bold text-white">Sinal ou Contrato</p>
-                        <p class="text-[11px] text-brand-slate">Forma de pagamento e contrato assinado.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-brand-gold/20 text-brand-gold">04. MARKETING</span>
+                        <h4 class="text-xs font-bold text-white">Fazer o cliente certo te achar</h4>
+                        <p class="text-[11px] text-brand-slate">Portfólio com antes/depois, Perfil no Google 5 estrelas, PDF de apresentação para arquitetos e tráfego pago na hora certa.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-brand-gold">9. ORDEM (O.S.)</span>
-                        <p class="text-xs font-bold text-white">Passagem Equipe</p>
-                        <p class="text-[11px] text-brand-slate">O.S. entregue à equipe antes da viagem.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">05. PROCESSO COMERCIAL</span>
+                        <h4 class="text-xs font-bold text-white">Da descoberta ao pós-venda</h4>
+                        <p class="text-[11px] text-brand-slate">Jornada de 9 etapas onde nenhum contato fica sem resposta em até 15 min e nenhuma proposta é esquecida.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">10. EXECUÇÃO</span>
-                        <p class="text-xs font-bold text-white">Antes & Depois</p>
-                        <p class="text-[11px] text-brand-slate">Fotos com autorização, limpeza e descarte.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">06. OPERAÇÃO & CAPACIDADE</span>
+                        <h4 class="text-xs font-bold text-white">Vender só o que a equipe entrega</h4>
+                        <p class="text-[11px] text-brand-slate">Rotas agrupadas por região. A van só se desloca quando o valor do serviço e a margem de lucro compensam.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">11. ACEITE</span>
-                        <p class="text-xs font-bold text-white">Liberação Fatura</p>
-                        <p class="text-[11px] text-brand-slate">Assinatura de conclusão pelo cliente.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">07. GESTÃO</span>
+                        <h4 class="text-xs font-bold text-white">Enxergar o que funciona</h4>
+                        <p class="text-[11px] text-brand-slate">Poucos indicadores acompanhados toda semana: quantos orçamentos foram enviados, quantos fecharam e qual foi o lucro real.</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-brand-border space-y-1">
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">12. PÓS-VENDA</span>
-                        <p class="text-xs font-bold text-white">Recorrência & Google</p>
-                        <p class="text-[11px] text-brand-slate">Avaliação 5 estrelas e contrato mensal.</p>
+
+                    <div class="bg-gradient-to-br from-brand-forest/20 to-slate-950 p-4 rounded-xl border-2 border-brand-emerald space-y-1.5">
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-brand-emerald text-slate-950">A REGRA DE OURO</span>
+                        <h4 class="text-xs font-bold text-white">O Caminho em Fases</h4>
+                        <p class="text-[11px] text-brand-slate"><strong>Cada fase só começa quando a anterior estiver de pé:</strong> Estruturar → Lançar → Validar → Expandir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OS DOIS ROSTOS DA JARDIM PADRÃO (Inspirado na Página 10) -->
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
+                <div class="border-b border-brand-border pb-3">
+                    <span class="text-xs font-extrabold text-brand-gold uppercase tracking-wider">👥 HUMANIZAÇÃO & CONFIANÇA</span>
+                    <h3 class="text-lg font-extrabold text-white mt-1">Os Dois Rostos que o Cliente Precisa Enxergar</h3>
+                    <p class="text-xs text-brand-slate">O cliente de chácara ou condomínio só fecha quando tem resposta segura para duas perguntas:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-slate-950 p-5 rounded-xl border border-brand-border space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-brand-emerald uppercase">ROSTO 1: A TÉCNICA & A EXECUÇÃO</span>
+                            <span class="text-lg">🌿🚜</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white">A Pergunta do Cliente: <em>"Vai ficar bom de verdade?"</em></h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            Mostre a equipe de uniforme, as ferramentas limpas e afiadas, o tratorzinho cortador, o descarte correto dos resíduos e a pontualidade. Esse rosto transmite autoridade técnica.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950 p-5 rounded-xl border border-brand-border space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-brand-gold uppercase">ROSTO 2: O CUIDADO & O ATENDIMENTO</span>
+                            <span class="text-lg">📱🤝</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white">A Pergunta do Cliente: <em>"Vou ser bem atendido e respeitado?"</em></h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            Mostre a rapidez de resposta no WhatsApp, a proposta formatada sem letras miúdas, a prestação de contas com fotos ao final do dia e a garantia de serviço. Esse rosto fecha o contrato.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ==========================================
-             ABA 2: NÍVEL 1 — CAIXA RÁPIDO & OUTBOUND A FRIO
+             ABA 2: JORNADA COMERCIAL EM 9 ETAPAS & AS 4 DECISÕES
+             ========================================== -->
+        <section id="tab-jornada" class="tab-pane hidden space-y-8">
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <span class="px-2.5 py-1 rounded text-xs font-extrabold bg-blue-500/20 text-blue-300 uppercase">PROCESSO COMERCIAL CLARO</span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">🛣️ A Jornada Comercial em 9 Etapas (Do Primeiro Contato ao Pós-Venda)</h2>
+                        <p class="text-xs sm:text-sm text-brand-slate mt-1">
+                            Inspirado na página 11 do projeto estratégico: cada venda segue rigorosamente estes 9 degraus sem pular etapas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- O FLUXOGRAMA LINEAR DAS 9 ETAPAS -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-9 gap-2">
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-emerald text-brand-emerald font-extrabold text-xs flex items-center justify-center">1</span>
+                    <h5 class="text-xs font-extrabold text-white">Descoberta</h5>
+                    <p class="text-[10px] text-brand-slate">Google, Indicação ou Anúncio.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-emerald text-brand-emerald font-extrabold text-xs flex items-center justify-center">2</span>
+                    <h5 class="text-xs font-extrabold text-white">Contato</h5>
+                    <p class="text-[10px] text-brand-slate">Resposta no WhatsApp em < 15 min.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-emerald text-brand-emerald font-extrabold text-xs flex items-center justify-center">3</span>
+                    <h5 class="text-xs font-extrabold text-white">Qualificação</h5>
+                    <p class="text-[10px] text-brand-slate">Pede fotos, localização e urgência.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-emerald text-brand-emerald font-extrabold text-xs flex items-center justify-center">4</span>
+                    <h5 class="text-xs font-extrabold text-white">Visita Técnica</h5>
+                    <p class="text-[10px] text-brand-slate">Medição da área e fotos de risco.</p>
+                </div>
+                <div class="bg-brand-card border-2 border-brand-emerald p-3.5 rounded-xl text-center space-y-1 bg-slate-950">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-brand-emerald text-slate-950 font-extrabold text-xs flex items-center justify-center">5</span>
+                    <h5 class="text-xs font-extrabold text-white">Orçamento</h5>
+                    <p class="text-[10px] text-brand-emerald font-semibold">Custo + Margem de 40% travada.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-gold text-brand-gold font-extrabold text-xs flex items-center justify-center">6</span>
+                    <h5 class="text-xs font-extrabold text-white">Follow-up</h5>
+                    <p class="text-[10px] text-brand-slate">Retorno ativo nos dias 2 e 5.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-brand-gold text-brand-gold font-extrabold text-xs flex items-center justify-center">7</span>
+                    <h5 class="text-xs font-extrabold text-white">Fechamento</h5>
+                    <p class="text-[10px] text-brand-slate">Sinal de 50% ou contrato mensal.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-blue-400 text-blue-300 font-extrabold text-xs flex items-center justify-center">8</span>
+                    <h5 class="text-xs font-extrabold text-white">Execução (O.S.)</h5>
+                    <p class="text-[10px] text-brand-slate">Fotos do antes/depois e limpeza.</p>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-3.5 rounded-xl text-center space-y-1">
+                    <span class="w-6 h-6 mx-auto rounded-full bg-slate-900 border border-blue-400 text-blue-300 font-extrabold text-xs flex items-center justify-center">9</span>
+                    <h5 class="text-xs font-extrabold text-white">Pós-venda</h5>
+                    <p class="text-[10px] text-brand-slate">Avaliação no Google e recorrência.</p>
+                </div>
+            </div>
+
+            <!-- AS 4 PERGUNTAS DECISIVAS (Inspirado na Página 11) -->
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-5">
+                <div class="border-b border-brand-border pb-3">
+                    <span class="text-xs font-extrabold text-brand-gold uppercase tracking-wider">❓ PARA DECIDIRMOS JUNTOS</span>
+                    <h3 class="text-lg font-extrabold text-white mt-1">As 4 Perguntas que Destravam o Comercial da Empresa</h3>
+                    <p class="text-xs text-brand-slate">Defina e valide essas 4 respostas com sua equipe antes de colocar qualquer anúncio para rodar:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-2">
+                        <span class="text-xs font-bold text-brand-emerald">01. Quem recebe e responde um contato novo?</span>
+                        <p class="text-xs text-slate-300">
+                            <strong>Diretriz:</strong> Se o proprietário estiver no campo operando roçadeira, ele não pode responder o cliente 4 horas depois. Precisa haver uma pessoa dedicada com WhatsApp Web aberto ou respostas rápidas pré-programadas para atender em até 15 minutos.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-2">
+                        <span class="text-xs font-bold text-brand-emerald">02. Quem faz medição e orçamento? Quanto tempo leva hoje?</span>
+                        <p class="text-xs text-slate-300">
+                            <strong>Diretriz:</strong> Orçamento demorado perde venda. Serviços simples (até 500m²) são orçados por foto no mesmo dia usando a nossa Calculadora da Aba 8. Visitas técnicas são agrupadas por rota e a proposta é enviada no máximo em 24h.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-2">
+                        <span class="text-xs font-bold text-brand-gold">03. Existe valor mínimo ou distância máxima para atender?</span>
+                        <p class="text-xs text-slate-300">
+                            <strong>Diretriz:</strong> Nunca desloque a equipe para longe sem valor mínimo. Para fora de Jacareí/SJC (ex: Igaratá, Atibaia ou Itupeva), o valor mínimo deve cobrir a diária inteira da equipe + combustível com margem de 40% travada.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-brand-border space-y-2">
+                        <span class="text-xs font-bold text-brand-gold">04. Como acompanham hoje quem pediu orçamento e não fechou?</span>
+                        <p class="text-xs text-slate-300">
+                            <strong>Diretriz:</strong> 60% das vendas acontecem no retorno! Aplique a régua de follow-up: mensagem no Dia 2 ("Conseguiu avaliar a proposta?") e no Dia 5 avisando do fechamento da rota da semana para garantir a vaga.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ABA 3: NÍVEL 1 — CAIXA RÁPIDO & OUTBOUND A FRIO
              ========================================== -->
         <section id="tab-n1" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                        <span class="px-2.5 py-1 rounded text-xs font-extrabold bg-emerald-500/20 text-brand-emerald uppercase">NÍVEL 1 • OPERAÇÃO BASE</span>
+                        <span class="px-2.5 py-1 rounded text-xs font-extrabold bg-emerald-500/20 text-brand-emerald uppercase">NÍVEL 1 • FASE DE ESTRUTURAR & LANÇAR</span>
                         <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">⚡ Caixa Rápido & Prospecção Ativa (Sem Gastar com Anúncios)</h2>
                         <p class="text-xs sm:text-sm text-brand-slate mt-1">
-                            Este é o primeiro passo de qualquer empresa saudável: levantar receita rápida com contatos frios, clientes antigos e indicações diretas.
+                            O primeiro passo prático: levantar receita imediata com contatos frios, carteira antiga e indicações locais em Jacareí.
                         </p>
                     </div>
                     <div class="shrink-0">
@@ -391,7 +513,7 @@
                     </div>
 
                     <p class="text-xs text-brand-slate leading-relaxed">
-                        É 5x mais barato vender para quem já conhece o trabalho da Jardim Padrão do que para um estranho. Muitas chácaras e residências só precisam de um lembrete no momento certo.
+                        É 5x mais barato vender para quem já conhece o trabalho da Jardim Padrão. Muitas chácaras e residências só precisam de um lembrete no momento certo.
                     </p>
 
                     <div class="space-y-2.5">
@@ -405,7 +527,7 @@
                         </label>
                         <label class="check-item flex items-start gap-3 p-3 bg-slate-950/70 rounded-xl border border-brand-border/70 cursor-pointer">
                             <input type="checkbox" id="chk-n1-3" onchange="toggleCheck('chk-n1-3')" class="w-4 h-4 mt-0.5 accent-emerald-500 rounded">
-                            <span class="text-xs text-slate-200"><strong>Disparar Script de Reativação:</strong> Enviar mensagem personalizada oferecendo condição especial de poda/roçada para a rota da semana.</span>
+                            <span class="text-xs text-slate-200"><strong>Disparar Script de Reativação:</strong> Enviar mensagem personalizada oferecendo encaixe na rota da semana para economizar no deslocamento.</span>
                         </label>
                     </div>
 
@@ -417,7 +539,7 @@
                     </div>
                 </div>
 
-                <!-- Bloco 2: Prospecção Fria Ativa (Google Maps & Condomínios) -->
+                <!-- Bloco 2: Prospecção Fria Ativa (Google Maps & Bairros) -->
                 <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
                     <div class="flex items-center justify-between border-b border-brand-border pb-3">
                         <div class="flex items-center gap-2">
@@ -442,12 +564,12 @@
                         </label>
                         <label class="check-item flex items-start gap-3 p-3 bg-slate-950/70 rounded-xl border border-brand-border/70 cursor-pointer">
                             <input type="checkbox" id="chk-n1-6" onchange="toggleCheck('chk-n1-6')" class="w-4 h-4 mt-0.5 accent-emerald-500 rounded">
-                            <span class="text-xs text-slate-200"><strong>Cadência de Contato (Dias 1, 3 e 7):</strong> Enviar mensagem profissional perguntando quem responde pelas áreas verdes e propondo uma vistoria técnica gratuita na rota.</span>
+                            <span class="text-xs text-slate-200"><strong>Cadência de Contato (Dias 1, 3 e 7):</strong> Enviar mensagem profissional perguntando quem responde pelas áreas verdes e propondo uma vistoria técnica rápida.</span>
                         </label>
                     </div>
 
                     <div class="bg-brand-cardLight p-3.5 rounded-xl border border-brand-border text-xs flex items-center justify-between">
-                        <span class="text-brand-slate">Script oficial de abordagem fria:</span>
+                        <span class="text-brand-slate">Script de abordagem fria:</span>
                         <button onclick="copyScript('script-prospeccao-fria')" class="text-brand-gold font-bold hover:underline">
                             📋 Copiar Script
                         </button>
@@ -512,7 +634,7 @@
                         </label>
                         <label class="check-item flex items-start gap-3 p-3 bg-slate-950/70 rounded-xl border border-brand-border/70 cursor-pointer">
                             <input type="checkbox" id="chk-n1-11" onchange="toggleCheck('chk-n1-11')" class="w-4 h-4 mt-0.5 accent-emerald-500 rounded">
-                            <span class="text-xs text-slate-200"><strong>Oferta do Vizinho:</strong> Pedir o contato de 2 amigos ou vizinhos de condomínio/chácara que também precisam de manutenção para a mesma rota.</span>
+                            <span class="text-xs text-slate-200"><strong>Oferta do Vizinho:</strong> Pedir o contato de 2 vizinhos de condomínio/chácara que também precisam de manutenção para a mesma rota.</span>
                         </label>
                         <label class="check-item flex items-start gap-3 p-3 bg-slate-950/70 rounded-xl border border-brand-border/70 cursor-pointer">
                             <input type="checkbox" id="chk-n1-12" onchange="toggleCheck('chk-n1-12')" class="w-4 h-4 mt-0.5 accent-emerald-500 rounded">
@@ -532,13 +654,13 @@
         </section>
 
         <!-- ==========================================
-             ABA 3: NÍVEL 2 — ESCALA & TRÁFEGO PAGO (INBOUND)
+             ABA 4: NÍVEL 2 — TRÁFEGO PAGO & INBOUND (VALIDAR & EXPANDIR)
              ========================================== -->
         <section id="tab-n2" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                        <span class="px-2.5 py-1 rounded text-xs font-extrabold bg-blue-500/20 text-blue-300 uppercase">NÍVEL 2 • ESCALA AUTOMATIZADA</span>
+                        <span class="px-2.5 py-1 rounded text-xs font-extrabold bg-blue-500/20 text-blue-300 uppercase">NÍVEL 2 • FASE DE VALIDAR & EXPANDIR</span>
                         <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">🚀 Tráfego Pago & Atendimento Inbound no WhatsApp</h2>
                         <p class="text-xs sm:text-sm text-brand-slate mt-1">
                             Aqui você investe parte do caixa gerado no Nível 1 para fazer os clientes chamarem a sua empresa todos os dias de forma automática.
@@ -577,7 +699,7 @@
                         </label>
                         <label class="check-item flex items-start gap-2.5 p-2.5 bg-slate-950/70 rounded-lg border border-brand-border/70 cursor-pointer">
                             <input type="checkbox" id="chk-n2-3" onchange="toggleCheck('chk-n2-3')" class="w-4 h-4 mt-0.5 accent-blue-500 rounded">
-                            <span class="text-xs text-slate-200"><strong>Chamada Direta WhatsApp:</strong> Botão com mensagem pronta: <em>"Olá! Vi seu anúncio e gostaria de um orçamento para a minha chácara/jardim em [Bairro]."</em></span>
+                            <span class="text-xs text-slate-200"><strong>Chamada Direta WhatsApp:</strong> Botão com mensagem pronta: <em>"Olá! Vi seu anúncio e gostaria de um orçamento para o meu terreno em [Bairro]."</em></span>
                         </label>
                     </div>
 
@@ -625,7 +747,7 @@
                     </div>
                     <h3 class="text-base font-extrabold text-white">Velocidade de Resposta & Qualificação</h3>
                     <p class="text-xs text-brand-slate leading-relaxed">
-                        Lead de anúncio é volátil. Se você demorar 2 horas para responder, ele já chamou outro jardineiro no Google. A meta é responder em até 15 minutos.
+                        Lead de anúncio é volátil. Se você demorar 2 horas para responder, ele já chamou outro profissional no Google. A meta inegociável é responder em até 15 minutos.
                     </p>
 
                     <div class="space-y-2">
@@ -655,7 +777,7 @@
         </section>
 
         <!-- ==========================================
-             ABA 4: NÍVEL 3 — ALTO PADRÃO, FAZENDA DA GRAMA & PARCERIAS B2B
+             ABA 5: NÍVEL 3 — ALTO PADRÃO, FAZENDA DA GRAMA & PARCERIAS B2B
              ========================================== -->
         <section id="tab-n3" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
@@ -744,7 +866,7 @@
 
             <!-- PARCEIROS ESTRATÉGICOS QUE VOCÊ DEVE PROCURAR -->
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
-                <h3 class="text-base font-extrabold text-white">🤝 A Rede de 13 Parceiros Estratégicos (Indicações Cruzadas)</h3>
+                <h3 class="text-base font-extrabold text-white">🤝 A Rede de 12 Parceiros Estratégicos (Indicações Cruzadas)</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-xs">
                     <div class="bg-slate-950 p-3 rounded-lg border border-brand-border"><strong class="text-brand-emerald">1. Arquitetos:</strong> Assinam as casas e definem o jardim.</div>
                     <div class="bg-slate-950 p-3 rounded-lg border border-brand-border"><strong class="text-brand-emerald">2. Paisagistas:</strong> Projetam e precisam de equipe de implantação.</div>
@@ -763,7 +885,7 @@
         </section>
 
         <!-- ==========================================
-             ABA 5: NÍVEL 4 — ROTAS INTELIGENTES & OPERAÇÃO 90 DIAS
+             ABA 6: NÍVEL 4 — ROTAS INTELIGENTES & OPERAÇÃO 90 DIAS
              ========================================== -->
         <section id="tab-n4" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
@@ -865,7 +987,7 @@
         </section>
 
         <!-- ==========================================
-             ABA 6: CENTRAL DE SCRIPTS PRONTOS (COPIAR EM 1 CLIQUE)
+             ABA 7: CENTRAL DE SCRIPTS PRONTOS (COPIAR EM 1 CLIQUE)
              ========================================== -->
         <section id="tab-scripts" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
@@ -1004,7 +1126,7 @@
         </section>
 
         <!-- ==========================================
-             ABA 7: CALCULADORA DE ORÇAMENTO & SIMULADOR DE MARGEM
+             ABA 8: CALCULADORA DE ORÇAMENTO & SIMULADOR DE MARGEM
              ========================================== -->
         <section id="tab-calc" class="tab-pane hidden space-y-8">
             <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
@@ -1124,13 +1246,13 @@
     <footer class="bg-brand-dark border-t border-brand-border/80 py-5 px-4 text-center text-xs text-brand-slate">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
             <span>Hub Estratégico — <strong>Jardim Padrão</strong> Paisagismo & Manutenção</span>
-            <span>Operação por Níveis: Outbound, Inbound, Fazenda da Grama & Gestão 90 Dias</span>
+            <span>Da Operação à Empresa que Vende • Metodologia dos 7 Pilares</span>
         </div>
     </footer>
 
     <!-- Interactive Scripts -->
     <script>
-        // Tab Navigation
+        // Tab Navigation (8 Tabs)
         function switchTab(tabId) {
             const panes = document.querySelectorAll('.tab-pane');
             panes.forEach(p => p.classList.add('hidden'));
@@ -1187,7 +1309,6 @@
         }
 
         // Checklist State and LocalStorage
-        const totalChecks = 24; // all checkboxes across N1, N2, N3
         function initChecks() {
             let saved = {};
             try {
@@ -1260,11 +1381,9 @@
             const trash = parseFloat(document.getElementById('calc-trash').value) || 0;
             const marginPct = (parseInt(document.getElementById('calc-margin').value) || 45) / 100;
 
-            // Daily rate per worker estimate (R$ 150/worker/day)
             const laborCost = team * days * 150;
             const totalCost = laborCost + fuel + materials + trash;
 
-            // Price with margin: Price = Cost / (1 - margin)
             const finalPrice = Math.round(totalCost / (1 - marginPct));
             const netProfit = Math.round(finalPrice - totalCost);
 
@@ -1272,7 +1391,6 @@
             document.getElementById('res-profit').textContent = 'R$ ' + netProfit.toLocaleString('pt-BR');
             document.getElementById('res-price').textContent = 'R$ ' + finalPrice.toLocaleString('pt-BR');
 
-            // Generate WhatsApp proposal text
             const proposal = `*PROPOSTA COMERCIAL — JARDIM PADRÃO* 🌿\n` +
 `---------------------------------------------\n` +
 `Olá, *${client}*! Tudo bem?\n` +
